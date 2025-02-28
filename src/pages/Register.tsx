@@ -12,46 +12,49 @@ const Register = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4">
-      <h1 className="text-3xl font-bold mb-6">Sign Up</h1>
-      <form
-        onSubmit={handleSignUp}
-        className="w-full max-w-sm p-6 bg-gray shadow-md rounded-md"
-      >
-        <label className="block mb-2">Email</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full p-2 border rounded mb-4"
-        />
-        <label className="block mb-2">Password</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full p-2 border rounded mb-4"
-        />
-        <button
-          type="submit"
-          className="w-full p-2 bg-blue-500 text-white rounded"
-        >
-          Sign Up
-        </button>
-      </form>
-      <p className="mt-4">
-        Already have an account?{" "}
-        <a
-          href="/login"
-          className="text-blue-500"
-          onClick={(e) => {
-            e.preventDefault();
-            navigate("/login");
-          }}
-        >
-          Sign In
-        </a>
-      </p>
+    <div className="flex justify-center items-center min-h-screen p-4">
+      <div className="w-full max-w-sm p-8 bg-[#2b2c2d] shadow-lg rounded-lg">
+        <h1 className="text-3xl font-bold text-white mb-6">Register</h1>
+        <form onSubmit={handleSignUp}>
+          <div className="mb-4">
+            <label className="block text-white mb-2">Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full p-3 border border-[#2bbb91] rounded-md bg-bg-[#2b2c2d] text-white focus:outline-none focus:ring-2 focus:ring-[#2bbb91]"
+            />
+          </div>
+          <div className="mb-6">
+            <label className="block text-white mb-2">Password</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full p-3 border border-[#2bbb91] rounded-md bg-bg-[#2b2c2d] text-white focus:outline-none focus:ring-2 focus:ring-[#2bbb91]"
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full p-3 bg-[#2bbb91] hover:bg-[#1f9975] text-white rounded-md focus:outline-none focus:ring-2 focus:ring-[#1f9975]"
+          >
+            Register
+          </button>
+        </form>
+        <p className="mt-4 text-center text-white">
+          Already have an account?{" "}
+          <a
+            href="/login"
+            className="text-[#2bbb91] hover:text-[#1f9975]"
+            onClick={(e) => {
+              e.preventDefault();
+              navigate("/login");
+            }}
+          >
+            Sign In
+          </a>
+        </p>
+      </div>
     </div>
   );
 };

@@ -23,7 +23,7 @@ const RecipeItem: React.FC<RecipeItemProps> = ({ recipe }) => {
       onClick={() => navigate(`/recipe/${recipe._id}`)}
     >
       <img
-        src="/src/assets/recipeimage.PNG"
+        src="../recipe-crud-app/assets/recipeimage.PNG"
         alt={recipe.title}
         className="w-full h-48 object-cover"
       />

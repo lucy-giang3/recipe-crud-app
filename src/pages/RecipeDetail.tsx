@@ -68,7 +68,7 @@ const RecipeDetail = () => {
       <div className="w-full max-w-4xl">
         {/* Recipe Image */}
         <img
-          src="/src/assets/recipeimage.PNG"
+          src="../recipe-crud-app/assets/recipeimage.PNG"
           alt={recipe.title}
           className="w-full h-80 object-cover rounded-lg"
         />

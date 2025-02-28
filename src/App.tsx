@@ -1,10 +1,5 @@
 import { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import RecipeList from "./pages/RecipeList";
 import RecipeDetail from "./pages/RecipeDetail";
 import BookmarkedRecipes from "./pages/BookmarkedRecipes";
@@ -19,38 +14,58 @@ import EditRecipe from "./pages/EditRecipe";
 
 function App() {
   return (
-    <Router>
-      <AppLayout />
+    <Router basename="/recipe-crud-app">
+      <Routes>
+        {/* Login Pages */}
+        <Route element={<AuthLayout />}>
+          <Route path="/login" element={<LogIn />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/signup" element={<Register />} />
+        </Route>
+
+        {/* Main Content */}
+        <Route element={<AppLayout />}>
+          <Route path="/" element={<RecipeList />} />
+          <Route path="/bookmarks" element={<BookmarkedRecipes />} />
+          <Route path="/recipe/:id" element={<RecipeDetail />} />
+          <Route path="/my-recipes" element={<MyRecipes />} />
+          <Route path="/add-recipe" element={<AddRecipe />} />
+          <Route path="/explore" element={<Explore />} />
+          <Route path="/edit-recipe/:id" element={<EditRecipe />} />
+        </Route>
+      </Routes>
     </Router>
+  );
+}
+
+function AuthLayout() {
+  return (
+    <div>
+      <Routes>
+        <Route path="/login" element={<LogIn />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/signup" element={<Register />} />
+      </Routes>
+    </div>
   );
 }
 
 function AppLayout() {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const location = useLocation();
-  const hideNav = ["/login", "/forgot-password", "/signup"].includes(
-    location.pathname
-  );
-
-  // adjust content margin based on sidebar state
-  const contentClass = isCollapsed ? "ml-16" : "ml-64";
+  const contentClass = isCollapsed ? "ml-16" : "ml-65";
 
   return (
     <div className="flex">
-      {/* Sidebar */}
-      {!hideNav && (
-        <Sidebar isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
-      )}
+      <Sidebar isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
 
       {/* Main content area */}
-      <div className={`flex-grow p-4 ${contentClass}`}>
+      <div
+        className={`flex-grow p-4 transition-all duration-300 ${contentClass}`}
+      >
         <Routes>
           <Route path="/" element={<RecipeList />} />
           <Route path="/bookmarks" element={<BookmarkedRecipes />} />
           <Route path="/recipe/:id" element={<RecipeDetail />} />
-          <Route path="/login" element={<LogIn />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/signup" element={<Register />} />
           <Route path="/my-recipes" element={<MyRecipes />} />
           <Route path="/add-recipe" element={<AddRecipe />} />
           <Route path="/explore" element={<Explore />} />

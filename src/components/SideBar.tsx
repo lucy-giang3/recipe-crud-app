@@ -9,7 +9,7 @@ import {
   LogOut,
 } from "lucide-react";
 
-const Sidebar = ({
+const SideBar = ({
   isCollapsed,
   setIsCollapsed,
 }: {
@@ -73,4 +73,4 @@ const Sidebar = ({
   );
 };
 
-export default Sidebar;
+export default SideBar;

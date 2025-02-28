@@ -23,7 +23,7 @@ const RecipeItemEdit: React.FC<RecipeItemProps> = ({ recipe }) => {
       onClick={() => navigate(`/recipe/${recipe._id}`)}
     >
       <img
-        src="/src/assets/recipeimage.PNG"
+        src="../recipe-crud-app/assets/recipeimage.PNG"
         alt={recipe.title}
         className="w-full h-48 object-cover"
       />
@@ -32,7 +32,7 @@ const RecipeItemEdit: React.FC<RecipeItemProps> = ({ recipe }) => {
           <h2 className="text-xl font-semibold text-white">{recipe.title}</h2>
           <button
             onClick={(e) => {
-              e.stopPropagation(); // Prevent navigation when clicking edit
+              e.stopPropagation();
               navigate(`/edit-recipe/${recipe._id}`);
             }}
             className="text-[#2bbb91] hover:text-[#497368]"

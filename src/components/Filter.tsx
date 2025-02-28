@@ -1,3 +1,5 @@
+import React from "react";
+
 interface Filters {
   cookTime: string;
   prepTime: string;
@@ -19,14 +21,20 @@ const Filter: React.FC<FilterProps> = ({
   isModalOpen,
   setIsModalOpen,
 }) => {
+  if (!isModalOpen) return null;
+
   return (
     <div
-      className={`fixed inset-0 flex items-center justify-end z-50 ${
-        isModalOpen ? "" : "hidden"
-      }`}
+      className="fixed inset-0 bg-black/45 flex items-center justify-end z-50"
+      onClick={() => setIsModalOpen(false)}
     >
-      <div className="bg-[#2b2c2d] p-6 rounded-l-lg w-80 h-full">
-        <h3 className="text-lg font-semibold mb-4">Filter Options</h3>
+      <div
+        className="bg-[#2b2c2d] p-6 rounded-l-lg w-80 h-full"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <h3 className="text-lg font-semibold mb-4 text-white">
+          Filter Options
+        </h3>
 
         <div className="flex gap-4 mb-4 flex-col">
           <input
@@ -36,7 +44,7 @@ const Filter: React.FC<FilterProps> = ({
             onChange={(e) =>
               setFilters({ ...filters, cookTime: e.target.value })
             }
-            className="border p-2 rounded"
+            className="border p-2 rounded bg-[#3d3d3d] text-white"
           />
           <input
             type="number"
@@ -45,7 +53,7 @@ const Filter: React.FC<FilterProps> = ({
             onChange={(e) =>
               setFilters({ ...filters, prepTime: e.target.value })
             }
-            className="border p-2 rounded"
+            className="border p-2 rounded bg-[#3d3d3d] text-white"
           />
           <input
             type="number"
@@ -54,7 +62,7 @@ const Filter: React.FC<FilterProps> = ({
             onChange={(e) =>
               setFilters({ ...filters, servings: e.target.value })
             }
-            className="border p-2 rounded"
+            className="border p-2 rounded bg-[#3d3d3d] text-white"
           />
           <select
             value={filters.difficulty}
@@ -86,8 +94,8 @@ const Filter: React.FC<FilterProps> = ({
                 difficulty: "",
                 tags: "",
               })
-            } // Reset filters
-            className="p-2 bg-[#2bbb91] hover:bg-[#2b5449] text-[#ffffff] rounded"
+            }
+            className="p-2 bg-[#2bbb91] hover:bg-[#2b5449] text-white rounded"
           >
             Reset Filters
           </button>
